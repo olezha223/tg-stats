@@ -29,33 +29,32 @@ docker-compose up --build
 
 ## Структура проекта
 
-backend
-├───src
-│   ├───app
-│   │   └───v1
-│   │       └───handlers
-│   ├───database
-│   ├───models
-│   ├───repository
-│   └───service
-│       ├───data
-│       └───files
-│   main.py
-│   Dockerfile
-│   requirements.txt
-│   .gitignore
+```scheme
+└── backend
+  └── src
+    └── app
+      └── v1
+        └── handlers
+    └── database
+    └── models
+    └── repository
+    └── service
+      └── data
+      └── files
 
-frontend
-├───src
-│   └───App.jsx
-│   └───index.css
-│   └───main.jsx
-│   Dockerfile
-│   .gitignore
 
-nginx
-│   nginx.conf
-│   Dockerfile
+└── frontend
+  └── src
+    └── App.jsx
+    └── index.css
+    └── main.jsx
+
+
+└── nginx
+  └── nginx.conf
+  └── Dockerfile
+
+```
 
 
 ### Контакты
