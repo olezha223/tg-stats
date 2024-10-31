@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata6:/data/db
+
+  web:
+    build: .
+    command: "uvicorn main:main --reload --host 0.0.0.0 --port 8000"
+    volumes:
+      - .:/app
+    env_file: backend_/src/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+  
+  frontend:
+    build: ./frontend/Dockerfile
+    ports:
+      - "5173:80"
+    networks:
+      - app-network
+  
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - web
+    networks:
+      - app-network
+
+volumes:
+  dbdata6:
+
+networks:
+  app-network:
+    driver: bridge
